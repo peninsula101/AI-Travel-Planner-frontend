@@ -14,7 +14,7 @@ export default function LoginPage() {
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
-      const response = await axios.post('https://ai-travel-planner-backend-ui01.onrender.com/auth/login', {
+      const response = await axios.post('https://ai-travel-planner-backend-ui01.onrender.com/api/auth/login', {
         email,
         password
       });
