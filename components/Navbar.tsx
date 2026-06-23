@@ -9,7 +9,7 @@ export default function Navbar() {
   const pathname = usePathname(); 
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
-  useEffect(() => {
+    useEffect(() => {
     setIsLoggedIn(!!localStorage.getItem('token'));
   }, [pathname]);
 

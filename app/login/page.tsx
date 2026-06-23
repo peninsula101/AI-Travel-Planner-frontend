@@ -10,11 +10,12 @@ export default function LoginPage() {
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
   const router = useRouter();
+  const baseURL = process.env.NEXT_PUBLIC_API_URL || 'https://ai-travel-planner-backend-ui01.onrender.com/api';
 
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
-      const response = await axios.post('https://ai-travel-planner-backend-ui01.onrender.com/api/auth/login', {
+      const response = await axios.post(`${baseURL}/auth/login`, {
         email,
         password
       });

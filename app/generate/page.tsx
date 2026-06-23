@@ -35,7 +35,7 @@ export default function GenerateTripPage() {
 
     try {
       await axios.post(
-        'https://ai-travel-planner-backend-ui01.onrender.com/trips/generate',
+        'http://localhost:5000/api/trips/generate',
         {
           destination,
           durationDays: Number(durationDays),

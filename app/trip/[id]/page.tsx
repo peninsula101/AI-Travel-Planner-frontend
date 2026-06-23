@@ -9,6 +9,7 @@ export default function TripDetailsPage() {
   const [trip, setTrip] = useState<any>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
+  const baseURL = process.env.NEXT_PUBLIC_API_URL || 'https://ai-travel-planner-backend-ui01.onrender.com/api';
   
   const params = useParams();
   const router = useRouter();
@@ -23,7 +24,7 @@ export default function TripDetailsPage() {
       }
 
       try {
-        const response = await axios.get(`https://ai-travel-planner-backend-ui01.onrender.com/trips/${id}`, {
+        const response = await axios.get(`${baseURL}/trips/${id}`, {
           headers: { Authorization: `Bearer ${token}` }
         });
         setTrip(response.data);
@@ -45,7 +46,7 @@ export default function TripDetailsPage() {
 
     try {
       const token = localStorage.getItem('token');
-      await axios.put(`https://ai-travel-planner-backend-ui01.onrender.com/trips/${id}/packing/${itemId}`, {}, {
+      await axios.put(`${baseURL}/trips/${id}/packing/${itemId}`, {}, {
         headers: { Authorization: `Bearer ${token}` }
       });
     } catch (error) {
@@ -139,6 +140,7 @@ export default function TripDetailsPage() {
               ))}
             </div>
           </div>
+
           <div className="card shadow-sm bg-secondary text-white">
             <div className="card-body">
               <h5 className="card-title fw-bold border-bottom pb-2">Packing Checklist</h5>

@@ -9,6 +9,7 @@ export default function DashboardPage() {
   const [trips, setTrips] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
   const router = useRouter();
+  const baseURL = process.env.NEXT_PUBLIC_API_URL || 'https://ai-travel-planner-backend-ui01.onrender.com/api';
 
   useEffect(() => {
     const token = localStorage.getItem('token');
@@ -19,7 +20,7 @@ export default function DashboardPage() {
 
     const fetchTrips = async () => {
       try {
-        const response = await axios.get('https://ai-travel-planner-backend-ui01.onrender.com/trips', {
+        const response = await axios.get(`${baseURL}/trips`, {
           headers: { Authorization: `Bearer ${token}` }
         });
         setTrips(response.data);
@@ -41,7 +42,7 @@ export default function DashboardPage() {
 
     try {
       const token = localStorage.getItem('token');
-      await axios.delete(`https://ai-travel-planner-backend-ui01.onrender.com/trips/${tripId}`, {
+      await axios.delete(`${baseURL}/trips/${tripId}`, {
         headers: { Authorization: `Bearer ${token}` }
       });
       
@@ -77,6 +78,7 @@ export default function DashboardPage() {
                   <p className="card-text small text-muted">
                     <strong>Interests:</strong> {trip.interests.join(', ')}
                   </p>
+                  
                   <div className="mt-auto d-flex gap-2 pt-3 border-top">
                     <Link href={`/trip/${trip._id}`} className="btn btn-sm btn-outline-primary flex-grow-1">
                       View Itinerary
